@@ -327,7 +327,7 @@ public final class GameView extends JComponent
         
         try
         {
-            image=ImageIO.read(new File(pathImages+System.getProperty("file.separator")+fileName));
+            image=ImageIO.read(new File("exec" + System.getProperty("file.separator")+pathImages+System.getProperty("file.separator")+fileName));
         }
         catch(IOException e) 
         {

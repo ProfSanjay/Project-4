@@ -40,36 +40,25 @@ public final class StudentController implements DefenderController
 
 			}
 			else
+
 				{
-					//sets up relevant information and creates a copy of the powerpill list
-					List<Node> powerPillsCopy = game.getPowerPillList();
-					Node defensePosition = defender.getLocation();
-					Node powerPill = powerPills.get(i);
-					Node nearestPowerPill = defender.getTargetNode(powerPillsCopy, true);
-					if(nearestPowerPill.getPathDistance(defensePosition)+1 < nearestPowerPill.getPathDistance(attackPosition)) //checks and sees if the powerpill is safe from Pacman
+					Node nearestPill = null;
+					int distance = 10000;
+				for(int j = 0; j<powerPills.size(); j++)
+				{
+					if(defender.getLocation().getPathDistance(powerPills.get(i))<distance)
 					{
-						actions[i] = (defender.getNextDir(attackPosition, true));
+						distance = defender.getLocation().getPathDistance(powerPills.get(i));
+						nearestPill = powerPills.get(i);
 					}
-					else if(nearestPowerPill.getPathDistance(defensePosition) <= nearestPowerPill.getPathDistance(attackPosition))//if pacman is near it, it'll go to the next closest powerpill
-					{
-						actions[i] = (defender.getNextDir(nearestPowerPill, true));
-					}
-					else
-					{
-						powerPillsCopy.remove(nearestPowerPill);
-						nearestPowerPill = defender.getTargetNode(powerPillsCopy, true);
-						actions[i] = defender.getNextDir(nearestPowerPill, true);
-					}
+				}
+				actions[i] = defender.getNextDir(nearestPill, true);
 
 				if (defender.isVulnerable() == true)
 				{
 					actions[i] = defender.getNextDir(defender.getTargetNode(powerPills, false), true);
 				}
-				List<Integer> possibleDirs = defender.getPossibleDirs();
-				if (possibleDirs.size() != 0)
-					actions[i] = possibleDirs.get(Game.rng.nextInt(possibleDirs.size()));
-				else
-					actions[i] = -1;
+
 			}
 		}
 		return actions;

@@ -40,33 +40,38 @@ public final class StudentController implements DefenderController
 
 			}
 			else
-
+			if (defender.isVulnerable() == true)
+			{
+				powerPills = game.getPowerPillList();
+				int distance = 0;
+				Node nearestPill = null;
+				for(int j = 0; j<powerPills.size(); j++)
 				{
+					powerPills = game.getPowerPillList();
+					if(defender.getLocation().getPathDistance(powerPills.get(j))>distance)
+					{
+						distance = defender.getLocation().getPathDistance(powerPills.get(j));
+						nearestPill = powerPills.get(j);
+					}
+				}
+				actions[i] = defender.getNextDir(nearestPill, true);
+			}
+			else
+				{
+					powerPills = game.getPowerPillList();
 					Node nearestPill = null;
 					int distance = 10000;
 				for(int j = 0; j<powerPills.size(); j++)
 				{
-					if(defender.getLocation().getPathDistance(powerPills.get(i))<distance)
+					powerPills = game.getPowerPillList();
+
+					if(defender.getLocation().getPathDistance(powerPills.get(j))<distance)
 					{
-						distance = defender.getLocation().getPathDistance(powerPills.get(i));
-						nearestPill = powerPills.get(i);
+						distance = defender.getLocation().getPathDistance(powerPills.get(j));
+						nearestPill = powerPills.get(j);
 					}
 				}
 				actions[i] = defender.getNextDir(nearestPill, true);
-
-				if (defender.isVulnerable() == true)
-				{
-					distance = 0;
-					for(int j = 0; j<powerPills.size(); j++)
-					{
-						if(defender.getLocation().getPathDistance(powerPills.get(i))>distance)
-						{
-							distance = defender.getLocation().getPathDistance(powerPills.get(i));
-							nearestPill = powerPills.get(i);
-						}
-					}
-					actions[i] = defender.getNextDir(nearestPill, true);
-				}
 
 			}
 		}

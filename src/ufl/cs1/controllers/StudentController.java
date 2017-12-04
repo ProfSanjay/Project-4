@@ -28,10 +28,11 @@ public final class StudentController implements DefenderController
 		{
 			Defender defender = enemies.get(i);
 			List<Node> powerPills = game.getPowerPillList();
+			Attacker pacman = game.getAttacker();
+			Node attackPosition = pacman.getLocation();
 			if (powerPills.size() == 0)
 			{
-				Attacker pacman = game.getAttacker();
-				Node attackPosition = pacman.getLocation();
+
 				if(defender.isVulnerable() == true)
 				actions [i] = defender.getNextDir(attackPosition, false);
 				else actions[i] = (defender.getNextDir(attackPosition, true));
@@ -39,14 +40,20 @@ public final class StudentController implements DefenderController
 			}
 			else
 				{
-				Node nearestPill;
 				for (int j = 0; j < powerPills.size(); j++)
 				{
-
+					List<Node> powerPillsCopy = game.getPowerPillList();
+					Node defensePosition = defender.getLocation();
+					Node powerPill = powerPills.get(i);
+					Node nearestPowerPill = defender.getTargetNode(powerPillsCopy, true);
+					if(nearestPowerPill.getPathDistance(defensePosition) < nearestPowerPill.getPathDistance(attackPosition))
+					{
+						actions[i] = (defender.getNextDir(attackPosition, true));
+					}
 				}
 				if (defender.isVulnerable() == true)
 				{
-
+					actions[i] = defender.getNextDir(defender.getTargetNode(powerPills, false), true);
 				}
 				List<Integer> possibleDirs = defender.getPossibleDirs();
 				if (possibleDirs.size() != 0)

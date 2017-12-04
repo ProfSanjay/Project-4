@@ -56,7 +56,16 @@ public final class StudentController implements DefenderController
 
 				if (defender.isVulnerable() == true)
 				{
-					actions[i] = defender.getNextDir(defender.getTargetNode(powerPills, false), true);
+					distance = 0;
+					for(int j = 0; j<powerPills.size(); j++)
+					{
+						if(defender.getLocation().getPathDistance(powerPills.get(i))>distance)
+						{
+							distance = defender.getLocation().getPathDistance(powerPills.get(i));
+							nearestPill = powerPills.get(i);
+						}
+					}
+					actions[i] = defender.getNextDir(nearestPill, true);
 				}
 
 			}

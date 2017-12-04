@@ -33,8 +33,9 @@ public final class StudentController implements DefenderController
 				Attacker pacman = game.getAttacker();
 				Node attackPosition = pacman.getLocation();
 				if(defender.isVulnerable() == true)
-				defender.getNextDir(attackPosition, true);
-				else defender.getNextDir(attackPosition, false);
+				actions [i] = defender.getNextDir(attackPosition, false);
+				else actions[i] = (defender.getNextDir(attackPosition, true));
+
 			}
 			else
 				{

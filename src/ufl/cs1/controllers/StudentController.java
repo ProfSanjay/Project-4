@@ -1,11 +1,14 @@
 package ufl.cs1.controllers;
 
 import game.controllers.DefenderController;
+import game.models.Attacker;
 import game.models.Defender;
 import game.models.Game;
+import game.models.Node;
 
 import java.util.List;
 
+//TODO: Grab info about nodes and distances, and chekc to see pacman distance from it, if greater than ghost, then ghost attack, else if it is equal, ghost goes back, unless pacman is next to ghost
 public final class StudentController implements DefenderController
 {
 	public void init(Game game) {
@@ -24,11 +27,32 @@ public final class StudentController implements DefenderController
 		for(int i = 0; i < actions.length; i++)
 		{
 			Defender defender = enemies.get(i);
-			List<Integer> possibleDirs = defender.getPossibleDirs();
-			if (possibleDirs.size() != 0)
-				actions[i]=possibleDirs.get(Game.rng.nextInt(possibleDirs.size()));
+			List<Node> powerPills = game.getPowerPillList();
+			if (powerPills.size() == 0)
+			{
+				Attacker pacman = game.getAttacker();
+				Node attackPosition = pacman.getLocation();
+				if(defender.isVulnerable() == true)
+				defender.getNextDir(attackPosition, true);
+				else defender.getNextDir(attackPosition, false);
+			}
 			else
-				actions[i] = -1;
+				{
+				Node nearestPill;
+				for (int j = 0; j < powerPills.size(); j++)
+				{
+
+				}
+				if (defender.isVulnerable() == true)
+				{
+
+				}
+				List<Integer> possibleDirs = defender.getPossibleDirs();
+				if (possibleDirs.size() != 0)
+					actions[i] = possibleDirs.get(Game.rng.nextInt(possibleDirs.size()));
+				else
+					actions[i] = -1;
+			}
 		}
 		return actions;
 	}

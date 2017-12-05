@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="gatorraider-master">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/gatorraider-master.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -33,7 +33,7 @@ public final class StudentController implements DefenderController
 			Node attackPosition = pacman.getLocation();
 			if (powerPills.size() == 0) //Will go right for the attacker if there are no powerpills
 			{
-
+				//TODO: Change behavior to guard normal pill if the tests don't work
 				if(defender.isVulnerable() == true)
 				actions [i] = defender.getNextDir(attackPosition, false);
 				else actions[i] = (defender.getNextDir(attackPosition, true));
@@ -77,7 +77,14 @@ public final class StudentController implements DefenderController
                         }
                     }
                     //TODO: Make it so they stay by the pill if pacman is near, otherwise try to attack her, and maybe have them go to the pills if there are none instead of attacking
-                    actions[i] = defender.getNextDir(nearestPill, true);
+					if(defender.getLocation().getPathDistance(nearestPill)+1<pacman.getLocation().getPathDistance(nearestPill))
+					{
+						actions[i] = defender.getNextDir(attackPosition, true);
+					}
+                    else
+					{
+						actions[i] = defender.getNextDir(nearestPill, true);
+					}
 
                 }
 		}

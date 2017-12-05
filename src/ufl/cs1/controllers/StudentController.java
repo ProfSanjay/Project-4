@@ -48,32 +48,38 @@ public final class StudentController implements DefenderController
 				for(int j = 0; j<powerPills.size(); j++)
 				{
 					powerPills = game.getPowerPillList();
-					if(defender.getLocation().getPathDistance(powerPills.get(j))>distance)
+						if ( defender.getLocation().getPathDistance(powerPills.get(j)) > distance && powerPills.get(j) != null)
 					{
-						distance = defender.getLocation().getPathDistance(powerPills.get(j));
-						nearestPill = powerPills.get(j);
+							distance = defender.getLocation().getPathDistance(powerPills.get(j));
+							nearestPill = powerPills.get(j);
+
 					}
 				}
+				if(nearestPill != null)
 				actions[i] = defender.getNextDir(nearestPill, true);
+				else{
+					actions[i] = defender.getNextDir(attackPosition, true);
+				}
 			}
 			else
 				{
 					powerPills = game.getPowerPillList();
 					Node nearestPill = null;
 					int distance = 10000;
-				for(int j = 0; j<powerPills.size(); j++)
-				{
-					powerPills = game.getPowerPillList();
+				    for(int j = 0; j<powerPills.size(); j++)
+				    {
+					    powerPills = game.getPowerPillList();
 
-					if(defender.getLocation().getPathDistance(powerPills.get(j))<distance)
-					{
-						distance = defender.getLocation().getPathDistance(powerPills.get(j));
-						nearestPill = powerPills.get(j);
-					}
-				}
-				actions[i] = defender.getNextDir(nearestPill, true);
+                        if(defender.getLocation().getPathDistance(powerPills.get(j))<distance)
+                        {
+                            distance = defender.getLocation().getPathDistance(powerPills.get(j));
+                            nearestPill = powerPills.get(j);
+                        }
+                    }
+                    //TODO: Make it so they stay by the pill if pacman is near, otherwise try to attack her, and maybe have them go to the pills if there are none instead of attacking
+                    actions[i] = defender.getNextDir(nearestPill, true);
 
-			}
+                }
 		}
 		return actions;
 	}

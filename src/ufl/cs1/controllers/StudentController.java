@@ -77,7 +77,7 @@ public final class StudentController implements DefenderController
                         }
                     }
                     //TODO: Make it so they stay by the pill if pacman is near, otherwise try to attack her, and maybe have them go to the pills if there are none instead of attacking
-					if(defender.getLocation().getPathDistance(nearestPill)+1<pacman.getLocation().getPathDistance(nearestPill))
+					if(defender.getLocation().getPathDistance(nearestPill)<pacman.getLocation().getPathDistance(nearestPill))
 					{
 						actions[i] = defender.getNextDir(attackPosition, true);
 					}

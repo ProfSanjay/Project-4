@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6aad8797-0540-4aa4-a522-78dddcf9e2ab" name="Default" comment="Testing the new merge">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/Exec$Ghosts.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/Exec$Ghosts.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/Exec$PacMan.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/Exec$PacMan.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/Exec.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/Exec.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/models/Game$DM.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/models/Game$DM.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/models/Game$Direction.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/models/Game$Direction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/models/Game.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/models/Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/models/Node.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/models/Node.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/system/_Game.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/system/_Game.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/system/_Maze.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/system/_Maze.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/game/system/_Node.class" afterPath="$PROJECT_DIR$/out/production/Project-4/game/system/_Node.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Project-4/ufl/cs1/controllers/StudentController.class" afterPath="$PROJECT_DIR$/out/production/Project-4/ufl/cs1/controllers/StudentController.class" />
+    <list default="true" id="6aad8797-0540-4aa4-a522-78dddcf9e2ab" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -483,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512493078548</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Just a random commit for some intelliJ shit">
+      <created>1512590785621</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1512590785621</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -544,7 +540,8 @@
     <MESSAGE value="Started testing. Needs to still finish behavior" />
     <MESSAGE value="Code is finished for now, but I need everyone else's ghosts to finish making sure that everything is good" />
     <MESSAGE value="Testing the new merge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Testing the new merge" />
+    <MESSAGE value="Just a random commit for some intelliJ shit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Just a random commit for some intelliJ shit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

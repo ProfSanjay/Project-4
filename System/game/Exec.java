@@ -44,7 +44,7 @@ public class Exec
 				exec.runGame(attacker, studentDefender, true, _Game.DELAY);
 		}
 		else
-			//exec.runGame(attacker, studentDefender, true, _Game.DELAY);
+		//	exec.runGame(attacker, studentDefender, true, _Game.DELAY);
 
 		//this can be used for numerical testing (non-visual, no delays)
 		exec.runExperiment(attacker, studentDefender,100, false);

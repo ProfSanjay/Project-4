@@ -23,43 +23,92 @@ public final class StudentController implements DefenderController
 		//Starts the loop for each ghost action
 		for(int i = 0; i < actions.length; i++) {
 			Defender defender = enemies.get(i);
-			if(i == 3)
-			{
-			List<Node> powerPills = game.getPowerPillList();
-			Attacker player = game.getAttacker();
+			List<Integer> possibleDirs = defender.getPossibleDirs();
+			if (i == 4) { //This is Madelyn's defender.
+				Attacker attacker = game.getAttacker();
 
-			int countSize = powerPills.size(), powerPillContact = 0;
-			int counter = 0;
-			Node attackPosition = player.getLocation();
-
-			if (countSize == 0) {
-				actions[i] = defender.getNextDir(attackPosition, true);
-			} else {
-				if (counter >= powerPills.size()) {
-					countSize = powerPills.size();
-					counter++;
+				if (attacker.getLocation().getX() < defender.getLocation().getX() && possibleDirs.indexOf(Game.Direction.LEFT) != -1) {
+					// Get attacker X location.  If it is less than defender AND I can move to the left, then move to the left.
+					actions[i] = Game.Direction.LEFT;
 				}
-				if (defender.getLocation().getPathDistance(powerPills.get(counter)) < 50) {
-					countSize = powerPills.size();
-					counter++;
+				else if (attacker.getLocation().getX() > defender.getLocation().getX() && possibleDirs.indexOf(Game.Direction.RIGHT) != -1) {
+					// Get attacker X location.  If it is greater than defender AND I can move to the right, then move to the right.
+					actions[i] = Game.Direction.RIGHT;
+				}
+				else if (attacker.getLocation().getY() < defender.getLocation().getY() && possibleDirs.indexOf(Game.Direction.UP) != -1) {
+					// Get attacker Y location.  If it is less than (higher up) than defender AND I can move up, then move up.
+					actions[i] = Game.Direction.UP;
+				}
+				else if (attacker.getLocation().getY() > defender.getLocation().getY() && possibleDirs.indexOf(Game.Direction.DOWN) != -1) {
+					// Get attacker Y location.  If it is greater than (lower down) defender AND I can move down, then move down.
+					actions[i] = Game.Direction.DOWN;
+				}
+				//TODO: Determine if going right or left is going to take me off the screen.
+				//TODO: If attacker is sitting by a power pill, don't go after him.
+				//Could use getPowerPillList() and nodes to find the closest pill to the attacker.  If she is within a certain distance, then stop attacking and start defending
+				//Count number of pills per quadrant and guard that area
 
-					if (!(counter >= powerPills.size())) {
-						if (powerPills.get(counter) == null && powerPills.get(counter) == defender.getLocation())
-							powerPillContact++;
 
-						if (powerPillContact == 3)
-							powerPillContact = 0;
 
-						break;
+
+
+
+				//In Vulnerable Mode, make defender go in opposite direction ghost is going.
+				if (defender.isVulnerable()) {
+					if (actions[i] == Game.Direction.LEFT) {
+						actions[i] = Game.Direction.RIGHT;
+					}
+					else if (actions[i] == Game.Direction.RIGHT) {
+						actions[i] = Game.Direction.LEFT;
+					}
+					else if (actions[i] == Game.Direction.UP) {
+						actions[i] = Game.Direction.DOWN;
+					}
+					else if (actions[i] == Game.Direction.DOWN) {
+						actions[i] = Game.Direction.UP;
 					}
 				}
-				if (counter >= countSize)
-					counter = 0;
-
-				actions[i] = defender.getNextDir(powerPills.get(counter), true);
-
 			}
+			else {
+
+				if (i == 3) {
+					List<Node> powerPills = game.getPowerPillList();
+					Attacker player = game.getAttacker();
+
+					int countSize = powerPills.size(), powerPillContact = 0;
+					int counter = 0;
+					Node attackPosition = player.getLocation();
+
+					if (countSize == 0) {
+						actions[i] = defender.getNextDir(attackPosition, true);
+					} else {
+						if (counter >= powerPills.size()) {
+							countSize = powerPills.size();
+							counter++;
+						}
+						if (defender.getLocation().getPathDistance(powerPills.get(counter)) < 50) {
+							countSize = powerPills.size();
+							counter++;
+
+							if (!(counter >= powerPills.size())) {
+								if (powerPills.get(counter) == null && powerPills.get(counter) == defender.getLocation())
+									powerPillContact++;
+
+								if (powerPillContact == 3)
+									powerPillContact = 0;
+
+								break;
+							}
+						}
+						if (counter >= countSize)
+							counter = 0;
+
+						actions[i] = defender.getNextDir(powerPills.get(counter), true);
+
+					}
+				}
 			}
+
 			if (i == 1) {
 				//Sets up the intial data that I'll need
 				List<Node> powerPills = game.getPowerPillList();

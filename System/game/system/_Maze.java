@@ -58,7 +58,7 @@ public final class _Maze implements Maze
         try
         {
             // Prepare a stream to read data from the file.
-            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(_Game.pathMazes + System.getProperty("file.separator") + fileName)));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("exec"+System.getProperty("file.separator")+_Game.pathMazes + System.getProperty("file.separator") + fileName)));
             LinkedList<int[]> nodeData = new LinkedList<int[]>();
 
             // First, read in the name of this map.
@@ -149,7 +149,7 @@ public final class _Maze implements Maze
 
         try
         {
-            BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(_Game.pathMazes+System.getProperty("file.separator")+fileName)));
+            BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream("exec"+System.getProperty("file.separator")+_Game.pathMazes+System.getProperty("file.separator")+fileName)));
 
             for (int end = 0; end < graph.length; end++)
             {

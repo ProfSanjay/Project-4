@@ -108,6 +108,85 @@ public final class StudentController implements DefenderController
 					}
 				}
 			}
+			if(i == 2)
+			{
+				List<Node> powerPills = game.getPowerPillList();
+				Attacker pacman = game.getAttacker();
+				Node attackPosition = pacman.getLocation();
+
+				Node defPosition = defender.getLocation(); //gets the location of the defender position
+				Node nearestPill = null; //sets the pill to null
+
+
+				int x = attackPosition.getX(); //sets x to the x-axis of the attacker
+				int y = attackPosition.getY(); //sets y to the y-axis of the defender
+
+				int xOfD = defPosition.getX(); //sets x to the x-axis of the defender
+				int yOfD = defPosition.getY(); //sets y to the y-axis of the defender
+
+				int diffX = xOfD - x; //gets the x difference between defender and attacker
+				int diffY = yOfD - y; //gets the y difference between defender and attacker
+				int distance = 0; //
+
+				if (Math.abs(diffX) > Math.abs(diffY)) {
+					for (int j = 0; j < powerPills.size(); j++) {
+						powerPills = game.getPowerPillList();
+
+						if (defender.getLocation().getPathDistance(powerPills.get(j)) > distance && powerPills.get(j) != null)
+						{
+							Math.abs(diffX); //gets the difference of x-axis
+
+						}
+					}
+				} else {
+					for (int j = 0; j < powerPills.size(); j++) {
+						powerPills = game.getPowerPillList();
+
+						if (defender.getLocation().getPathDistance(powerPills.get(j)) > distance && powerPills.get(j) != null) {
+							Math.abs(diffY);
+							//gets the difference of y-axis
+
+
+						}
+					}
+					actions[i] = defender.getNextDir(attackPosition, false);
+				}
+
+
+				if (defender.isVulnerable() == true) {
+					if (Math.abs(x - xOfD) > Math.abs(y - yOfD)) {
+						for (int j = 0; j < powerPills.size(); j++) {
+							powerPills = game.getPowerPillList();
+
+							if (defender.getLocation().getPathDistance(powerPills.get(j)) > distance && powerPills.get(j) != null) {
+								Math.abs(diffY);
+								//gets the difference of y-axis
+
+							}
+						}
+
+						actions[i] = defender.getNextDir(attackPosition, true);
+					} else {
+						for (int j = 0; j < powerPills.size(); j++) {
+							powerPills = game.getPowerPillList();
+
+							if (defender.getLocation().getPathDistance(powerPills.get(j)) > distance && powerPills.get(j) != null) {
+								Math.abs(diffX);
+								//get the difference of x-axis
+
+
+							}
+						}
+
+					}
+					actions[i] = defender.getNextDir(attackPosition, false);
+
+				}
+
+
+
+
+			}
 
 			if (i == 1) {
 				//Sets up the intial data that I'll need

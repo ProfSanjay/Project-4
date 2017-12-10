@@ -43,10 +43,6 @@ public final class StudentController implements DefenderController
 					// Get attacker Y location.  If it is greater than (lower down) defender AND I can move down, then move down.
 					actions[i] = Game.Direction.DOWN;
 				}
-				//TODO: Determine if going right or left is going to take me off the screen.
-				//TODO: If attacker is sitting by a power pill, don't go after him.
-				//Could use getPowerPillList() and nodes to find the closest pill to the attacker.  If she is within a certain distance, then stop attacking and start defending
-				//Count number of pills per quadrant and guard that area
 
 
 
@@ -71,7 +67,7 @@ public final class StudentController implements DefenderController
 			}
 			else {
 
-				if (i == 3) {
+				if (i == 3) {//Nic's code
 					List<Node> powerPills = game.getPowerPillList();
 					Attacker player = game.getAttacker();
 
@@ -108,7 +104,7 @@ public final class StudentController implements DefenderController
 					}
 				}
 			}
-			if(i == 2)
+			if(i == 2) //Preethi's code
 			{
 				List<Node> powerPills = game.getPowerPillList();
 				Attacker pacman = game.getAttacker();
@@ -195,7 +191,6 @@ public final class StudentController implements DefenderController
 				Node attackPosition = pacman.getLocation();
 				if (powerPills.size() == 0) //Will go right for the attacker if there are no powerpills
 				{
-					//TODO: Change behavior to guard normal pill if the tests don't work
 					if (defender.isVulnerable() == true)
 						actions[i] = defender.getNextDir(attackPosition, false);
 					else actions[i] = (defender.getNextDir(attackPosition, true));
